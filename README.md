@@ -14,11 +14,11 @@ Allows easy installation of patched rt8192cu driver via dkms.
 ###Install dkms-driver:
 1. Unpack rt8192cu_dkms.zip
 2. Open terminal in rt8192cu_dkms
-3. Type: sudo make install_dkms 8192cu
+3. Type: sudo make install_dkms
 
 ###Uninstall dkms-driver:
 1. Open terminal in rt8192cu_dkms
-2. Type: sudo make uninstall_dkms 8192cu
+2. Type: sudo make uninstall_dkms
 
 ###Uninstall dkms-driver manually:
 1. Open terminal
