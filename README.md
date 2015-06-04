@@ -2,6 +2,7 @@
 Allows easy installation of patched rt8192cu driver via dkms.
 
 ###Before installation:
+######This is only relevant if you installed a driver for rt8192cu manually!
 - Remove the none dkms version of this driver:
   - Change to the old driver directory (where the "Makefile" is)
   - Open terminal in this directory
