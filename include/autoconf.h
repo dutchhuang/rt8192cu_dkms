@@ -255,7 +255,7 @@
 // #define CONFIG_DEBUG_RTL819X
 
 // Procfs
-#define CONFIG_PROC_DEBUG 1
+// #define CONFIG_PROC_DEBUG 1
 // uncomment only when fully implemented
 // #define FULLPROCSUPPORT
 
