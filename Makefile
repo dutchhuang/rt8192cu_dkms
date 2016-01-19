@@ -380,7 +380,7 @@ KSRC ?= /lib/modules/2.6.31-770-g0e46b52/source
 endif
 
 ifeq ($(CONFIG_PLATFORM_FS_MX61), y)
-EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN 
+EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN
 ARCH := arm
 CROSS_COMPILE := /home/share/CusEnv/FreeScale/arm-eabi-4.4.3/bin/arm-eabi-
 KSRC ?= /home/share/CusEnv/FreeScale/FS_kernel_env
@@ -592,7 +592,7 @@ install_dkms:
 	cp . /usr/src/$(MODULE_NAME)-4.0.2.9000.20130911 -a
 	rm /usr/src/$(MODULE_NAME)-4.0.2.9000.20130911/README.md
 	rm /usr/src/$(MODULE_NAME)-4.0.2.9000.20130911/ReleaseNotes.pdf
-	rm -rf /usr/src/$(MODULE_NAME)-4.0.2.9000.20130911/.git
+	rm -fr /usr/src/$(MODULE_NAME)-4.0.2.9000.20130911/.git
 	dkms add -m $(MODULE_NAME) -v 4.0.2.9000.20130911
 	dkms build -m $(MODULE_NAME) -v 4.0.2.9000.20130911
 	dkms install -m $(MODULE_NAME) -v 4.0.2.9000.20130911
@@ -603,8 +603,8 @@ install_dkms:
 
 uninstall_dkms:
 	dkms remove -m $(MODULE_NAME) -v 4.0.2.9000.20130911 --all
-	rm -rd /usr/src/$(MODULE_NAME)-4.0.2.9000.20130911
-	rm /etc/modprobe.d/blacklist-rtl-wlan-driver.conf
+	rm -frd /usr/src/$(MODULE_NAME)-4.0.2.9000.20130911
+	rm -f /etc/modprobe.d/blacklist-rtl-wlan-driver.conf
 	rmmod $(MODULE_NAME)
 	modprobe rtl8192cu
 
@@ -637,4 +637,3 @@ clean:
 	cd patches ; rm -f original new rt8192cu_diff.patch
 	rm -f rt8192cu-$(TBVER) rt8192cu*.tar.gz
 endif
-

@@ -256,8 +256,6 @@
 
 // Procfs
 // #define CONFIG_PROC_DEBUG 1
-// uncomment only when fully implemented
-// #define FULLPROCSUPPORT
 
 // #define DBG_IO
 // #define DBG_DELAY_OS
