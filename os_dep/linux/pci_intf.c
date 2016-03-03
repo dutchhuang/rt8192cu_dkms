@@ -1855,10 +1855,11 @@ static int rtw_drv_init(struct pci_dev *pdev, const struct pci_device_id *did)
 	rtd2885_wlan_netlink_sendMsg("linkup", "8712");
 #endif
 
+#ifdef CONFIG_PROC_DEBUG
 #ifdef RTK_DMP_PLATFORM
 	rtw_proc_init_one(if1->pnetdev);
 #endif
-
+#endif // CONFIG_PROC_DEBUG
 
 	/* alloc irq */
 	if (pci_alloc_irq(dvobj) != _SUCCESS)
@@ -1994,4 +1995,3 @@ static void __exit rtw_drv_halt(void)
 
 module_init(rtw_drv_entry);
 module_exit(rtw_drv_halt);
-

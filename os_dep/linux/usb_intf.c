@@ -1338,8 +1338,8 @@ static void rtw_usb_if1_deinit(_adapter *if1)
 	free_mlme_ap_info(if1);
 	#ifdef CONFIG_HOSTAPD_MLME
 	hostapd_mode_unload(if1);
-	#endif
-#endif
+	#endif // CONFIG_HOSTAPD_MLME
+#endif // CONFIG_AP_MODE
 
 	rtw_cancel_all_timer(if1);
 #ifdef CONFIG_WOWLAN
@@ -1446,9 +1446,11 @@ static int rtw_drv_init(struct usb_interface *pusb_intf, const struct usb_device
 	rtd2885_wlan_netlink_sendMsg("linkup", "8712");
 #endif
 
+#ifdef CONFIG_PROC_DEBUG
 #ifdef RTK_DMP_PLATFORM
 	rtw_proc_init_one(if1->pnetdev);
 #endif
+#endif // CONFIG_PROC_DEBUG
 
 	RT_TRACE(_module_hci_intfs_c_,_drv_err_,("-871x_drv - drv_init, success!\n"));
 
@@ -1655,4 +1657,3 @@ _adapter  *rtw_usb_get_sw_pointer(void)
 }
 EXPORT_SYMBOL(rtw_usb_get_sw_pointer);
 #endif	//CONFIG_INTEL_PROXIM
-
