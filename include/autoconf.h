@@ -255,7 +255,7 @@
 // #define CONFIG_DEBUG_RTL819X
 
 // Procfs
-// #define CONFIG_PROC_DEBUG 1
+#define CONFIG_PROC_DEBUG 0
 
 // #define DBG_IO
 // #define DBG_DELAY_OS
