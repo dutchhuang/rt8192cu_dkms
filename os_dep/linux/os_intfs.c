@@ -36,11 +36,11 @@
 
 #ifdef CONFIG_USB_HCI
 #include <usb_osintf.h>
-#endif
+#endif // CONFIG_USB_HCI
 
 #ifdef CONFIG_PCI_HCI
 #include <pci_osintf.h>
-#endif
+#endif // CONFIG_PCI_HCI
 
 #ifdef CONFIG_BR_EXT
 #include <rtw_br_ext.h>
@@ -74,11 +74,11 @@ int rtw_power_mgnt = 1;
 int rtw_ips_mode = IPS_LEVEL_2;
 #else
 int rtw_ips_mode = IPS_NORMAL;
-#endif
+#endif // CONFIG_IPS_LEVEL_2
 #else
 int rtw_power_mgnt = PS_MODE_ACTIVE;
 int rtw_ips_mode = IPS_NONE;
-#endif
+#endif // CONFIG_POWER_SAVING
 
 module_param(rtw_ips_mode, int, 0644);
 MODULE_PARM_DESC(rtw_ips_mode, "The default IPS mode");
@@ -94,7 +94,7 @@ int rtw_ack_policy = NORMAL_ACK;
 int rtw_mp_mode = 1;
 #else
 int rtw_mp_mode = 0;
-#endif
+#endif // CONFIG_MP_INCLUDED
 
 int rtw_software_encrypt = 0;
 int rtw_software_decrypt = 0;
@@ -113,7 +113,7 @@ int rtw_cbw40_enable = 3; // 0: disable, bit(0): enable 2.4g, bit(1): enable 5g
 int rtw_ampdu_enable = 1; // for enable tx_ampdu
 int rtw_rx_stbc = 1; // 0: disable, bit(0): enable 2.4g, bit(1): enable 5g, default is set to enable 2.4GHZ for IOT issue with bufflao's AP at 5GHZ
 int rtw_ampdu_amsdu = 0; // 0: disabled, 1: enabled, 2: auto
-#endif
+#endif // CONFIG_80211N_HT
 
 int rtw_lowrate_two_xmit = 1; // Use 2 path Tx to transmit MCS0~7 and legacy mode
 //int rf_config = RF_1T2R; // 1T2R
@@ -124,7 +124,7 @@ int rtw_low_power = 0;
 int rtw_wifi_spec = 1; // for wifi test
 #else
 int rtw_wifi_spec = 0;
-#endif
+#endif // CONFIG_WIFI_TEST
 
 int rtw_special_rf_path = 0; // 0: 2T2R, 1: only turn on path A 1T1R, 2: only turn on path B 1T1R
 int rtw_channel_plan = RT_CHANNEL_DOMAIN_MAX;
@@ -133,7 +133,7 @@ int rtw_channel_plan = RT_CHANNEL_DOMAIN_MAX;
 int rtw_bt_iso = 2; // 0: Low, 1: High, 2: From Efuse
 int rtw_bt_sco = 3; // 0: Idle, 1: None-SCO, 2: SCO, 3: From Counter, 4: Busy, 5: OtherBusy
 int rtw_bt_ampdu = 1; // 0: Disable BT control A-MPDU, 1: Enable BT control A-MPDU.
-#endif
+#endif // CONFIG_BT_COEXIST
 
 int rtw_AcceptAddbaReq = _TRUE; // 0: Reject AP's Add BA req, 1: Accept AP's Add BA req
 int  rtw_antdiv_cfg = 2; // 0: OFF, 1: ON, 2: decide by Efuse config
@@ -142,7 +142,7 @@ int  rtw_antdiv_cfg = 2; // 0: OFF, 1: ON, 2: decide by Efuse config
 int rtw_enusbss = 1; // 0: disable, 1: enable
 #else
 int rtw_enusbss = 0; // 0: disable, 1: enable
-#endif
+#endif // CONFIG_USB_AUTOSUSPEND
 
 int rtw_hwpdn_mode = 2; // 0: disable, 1: enable, 2: by EFUSE config
 
@@ -150,23 +150,23 @@ int rtw_hwpdn_mode = 2; // 0: disable, 1: enable, 2: by EFUSE config
 int rtw_hwpwrp_detect = 1;
 #else
 int rtw_hwpwrp_detect = 0; // HW power ping detect 0: disable , 1: enable
-#endif
+#endif // CONFIG_HW_PWRP_DETECTION
 
 #ifdef CONFIG_USB_HCI
 int rtw_hw_wps_pbc = 1;
 #else
 int rtw_hw_wps_pbc = 0;
-#endif
+#endif // CONFIG_USB_HCI
 
 #ifdef CONFIG_TX_MCAST2UNI
 int rtw_mc2u_disable = 0;
-#endif  // CONFIG_TX_MCAST2UNI
+#endif // CONFIG_TX_MCAST2UNI
 
 int rtw_mac_phy_mode = 0; // 0: by efuse, 1: smsp, 2: dmdp, 3: dmsp
 
 #ifdef CONFIG_80211D
 int rtw_80211d = 0;
-#endif
+#endif // CONFIG_80211D
 
 char* ifname = "wlan%d";
 module_param(ifname, charp, 0644);
@@ -181,7 +181,7 @@ char* rtw_initmac = 0;  // temp mac address if users want to use instead of the 
 #ifdef CONFIG_MULTI_VIR_IFACES
 int rtw_ext_iface_num  = 1; // primary / secondary iface is excluded
 module_param(rtw_ext_iface_num, int, 0644);
-#endif //CONFIG_MULTI_VIR_IFACES
+#endif // CONFIG_MULTI_VIR_IFACES
 
 module_param(rtw_initmac, charp, 0644);
 module_param(rtw_channel_plan, int, 0644);
@@ -202,7 +202,7 @@ module_param(rtw_cbw40_enable, int, 0644);
 module_param(rtw_ampdu_enable, int, 0644);
 module_param(rtw_rx_stbc, int, 0644);
 module_param(rtw_ampdu_amsdu, int, 0644);
-#endif
+#endif // CONFIG_80211N_HT
 
 module_param(rtw_lowrate_two_xmit, int, 0644);
 module_param(rtw_rf_config, int, 0644);
@@ -220,25 +220,25 @@ module_param(rtw_hw_wps_pbc, int, 0644);
 char *rtw_adaptor_info_caching_file_path = "/data/misc/wifi/rtw_cache";
 module_param(rtw_adaptor_info_caching_file_path, charp, 0644);
 MODULE_PARM_DESC(rtw_adaptor_info_caching_file_path, "The path of adapter info cache file");
-#endif //CONFIG_ADAPTOR_INFO_CACHING_FILE
+#endif // CONFIG_ADAPTOR_INFO_CACHING_FILE
 
 #ifdef CONFIG_LAYER2_ROAMING
 uint rtw_max_roaming_times = 2;
 module_param(rtw_max_roaming_times, uint, 0644);
 MODULE_PARM_DESC(rtw_max_roaming_times, "The max roaming times to try");
-#endif //CONFIG_LAYER2_ROAMING
+#endif // CONFIG_LAYER2_ROAMING
 
 #ifdef CONFIG_IOL
 bool rtw_force_iol = _FALSE;
 module_param(rtw_force_iol, bool, 0644);
 MODULE_PARM_DESC(rtw_force_iol, "Force to enable IOL");
-#endif //CONFIG_IOL
+#endif // CONFIG_IOL
 
 #ifdef CONFIG_FILE_FWIMG
 char *rtw_fw_file_path = "";
 module_param(rtw_fw_file_path, charp, 0644);
 MODULE_PARM_DESC(rtw_fw_file_path, "The path of fw image");
-#endif //CONFIG_FILE_FWIMG
+#endif // CONFIG_FILE_FWIMG
 
 #ifdef CONFIG_TX_MCAST2UNI
 module_param(rtw_mc2u_disable, int, 0644);
@@ -248,7 +248,7 @@ module_param(rtw_mac_phy_mode, int, 0644);
 
 #ifdef CONFIG_80211D
 module_param(rtw_80211d, int, 0644);
-#endif
+#endif // CONFIG_80211D
 
 uint rtw_notch_filter = RTW_NOTCH_FILTER;
 module_param(rtw_notch_filter, uint, 0644);
@@ -259,7 +259,7 @@ int _netdev_open(struct net_device *pnetdev);
 int netdev_open (struct net_device *pnetdev);
 static int netdev_close (struct net_device *pnetdev);
 
-// #ifdef RTK_DMP_PLATFORM
+//#ifdef RTK_DMP_PLATFORM
 #ifdef CONFIG_PROC_DEBUG
 #define RTL8192C_PROC_NAME "rtl8192cu" // name for procfs
 #define RTL8192D_PROC_NAME "rtl8192du"
@@ -473,7 +473,7 @@ static const struct file_operations proc_get_all_sta_info_fops = {
     .llseek = seq_lseek,
     .release = single_release,
 };
-#endif
+#endif // CONFIG_AP_MODE
 
 #ifdef DBG_MEMORY_LEAK
 static int proc_get_malloc_cnt_open(struct inode *inode, struct file *file) {
@@ -487,7 +487,7 @@ static const struct file_operations proc_get_malloc_cnt_fops = {
     .llseek = seq_lseek,
     .release = single_release,
 };
-#endif
+#endif // DBG_MEMORY_LEAK
 
 #ifdef CONFIG_FIND_BEST_CHANNEL
 static int proc_get_best_channel_open(struct inode *inode, struct file *file) {
@@ -501,8 +501,8 @@ static const struct file_operations proc_get_best_channel_fops = {
     .llseek = seq_lseek,
     .release = single_release,
 };
-#endif
-#endif
+#endif // CONFIG_FIND_BEST_CHANNEL
+#endif // LINUX_VERSION_CODE >= KERNEL_VERSION(3,10,0)
 
 void rtw_proc_init_one(struct net_device *dev)
 {
@@ -561,25 +561,24 @@ void rtw_proc_init_one(struct net_device *dev)
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
         entry = create_proc_read_entry("log_level", S_IFREG | S_IRUGO,
                                        rtw_proc, proc_get_log_level, dev);
-#endif
+
         if (!entry) {
             DBG_871X("Unable to create_proc_read_entry!\n");
             return;
         }
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
+
         entry->write_proc = proc_set_log_level;
-#endif
 
 #ifdef DBG_MEM_ALLOC
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
         entry = create_proc_read_entry("mstat", S_IFREG | S_IRUGO,
                                        rtw_proc, proc_get_mstat, dev);
-#endif
+
         if (!entry) {
             DBG_871X("Unable to create_proc_read_entry!\n");
             return;
         }
-#endif /* DBG_MEM_ALLOC */
+#endif // DBG_MEM_ALLOC
+#endif // LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     }
 
     if (padapter->dir_dev == NULL)
@@ -597,7 +596,7 @@ void rtw_proc_init_one(struct net_device *dev)
             if (rtw_proc_cnt == 0)
             {
                 if (rtw_proc) {
-#if(LINUX_VERSION_CODE < KERNEL_VERSION(2,6,24))
+#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,24)
                     remove_proc_entry(rtw_proc_name, proc_net);
 #else
                     remove_proc_entry(rtw_proc_name, init_net.proc_net);
@@ -630,9 +629,7 @@ void rtw_proc_init_one(struct net_device *dev)
     }
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry->write_proc = proc_set_write_reg;
-#endif
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("read_reg", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_read_reg, dev);
 #else
@@ -645,9 +642,7 @@ void rtw_proc_init_one(struct net_device *dev)
     }
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry->write_proc = proc_set_read_reg;
-#endif
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("fwstate", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_fwstate, dev);
 #else
@@ -758,70 +753,63 @@ void rtw_proc_init_one(struct net_device *dev)
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("mac_reg_dump1", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_mac_reg_dump1, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("mac_reg_dump2", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_mac_reg_dump2, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("mac_reg_dump3", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_mac_reg_dump3, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("bb_reg_dump1", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_bb_reg_dump1, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("bb_reg_dump2", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_bb_reg_dump2, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("bb_reg_dump3", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_bb_reg_dump3, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("rf_reg_dump1", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_rf_reg_dump1, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("rf_reg_dump2", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_rf_reg_dump2, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
@@ -829,24 +817,24 @@ void rtw_proc_init_one(struct net_device *dev)
 
     rtw_hal_get_hwreg(padapter, HW_VAR_RF_TYPE, (u8 *)(&rf_type));
     if ((RF_1T2R == rf_type) || (RF_1T1R == rf_type )) {
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
+
         entry = create_proc_read_entry("rf_reg_dump3", S_IFREG | S_IRUGO,
                                        dir_dev, proc_get_rf_reg_dump3, dev);
-#endif
+
         if (!entry) {
             DBG_871X("Unable to create_proc_read_entry!\n");
             return;
         }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
         entry = create_proc_read_entry("rf_reg_dump4", S_IFREG | S_IRUGO,
                                        dir_dev, proc_get_rf_reg_dump4, dev);
-#endif
+
         if (!entry) {
             DBG_871X("Unable to create_proc_read_entry!\n");
             return;
         }
     }
+#endif // LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
 
 #ifdef CONFIG_AP_MODE
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
@@ -860,7 +848,7 @@ void rtw_proc_init_one(struct net_device *dev)
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
-#endif
+#endif // CONFIG_AP_MODE
 
 #ifdef DBG_MEMORY_LEAK
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
@@ -874,7 +862,7 @@ void rtw_proc_init_one(struct net_device *dev)
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
-#endif
+#endif // DBG_MEMORY_LEAK
 
 #ifdef CONFIG_FIND_BEST_CHANNEL
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
@@ -891,7 +879,7 @@ void rtw_proc_init_one(struct net_device *dev)
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry->write_proc = proc_set_best_channel;
 #endif
-#endif
+#endif // CONFIG_FIND_BEST_CHANNEL
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("rx_signal", S_IFREG | S_IRUGO,
@@ -906,31 +894,27 @@ void rtw_proc_init_one(struct net_device *dev)
     }
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry->write_proc = proc_set_rx_signal;
-#endif
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("ht_enable", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_ht_enable, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
-    entry->write_proc = proc_set_ht_enable;
-#endif
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
+    entry->write_proc = proc_set_ht_enable;
+
     entry = create_proc_read_entry("cbw40_enable", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_cbw40_enable, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
+
     entry->write_proc = proc_set_cbw40_enable;
-#endif
+#endif // LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("ampdu_enable", S_IFREG | S_IRUGO,
@@ -945,83 +929,73 @@ void rtw_proc_init_one(struct net_device *dev)
     }
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry->write_proc = proc_set_ampdu_enable;
-#endif
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("rx_stbc", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_rx_stbc, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
-    entry->write_proc = proc_set_rx_stbc;
-#endif
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
+    entry->write_proc = proc_set_rx_stbc;
+
     entry = create_proc_read_entry("path_rssi", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_two_path_rssi, dev);
 
     entry = create_proc_read_entry("vid", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_vid, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("pid", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_pid, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("rssi_disp", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_rssi_disp, dev);
 #else
     entry = proc_create_data("rssi_disp", S_IFREG | S_IRUGO,
                              dir_dev, &proc_get_rssi_disp_fops, dev);
-#endif
+#endif // LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry->write_proc = proc_set_rssi_disp;
-#endif
 
-#if defined(DBG_CONFIG_ERROR_DETECT)
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
+#ifdef DBG_CONFIG_ERROR_DETECT
     entry = create_proc_read_entry("sreset", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_sreset, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
+
     entry->write_proc = proc_set_sreset;
-#endif
-#endif /* DBG_CONFIG_ERROR_DETECT */
+#endif // DBG_CONFIG_ERROR_DETECT
 
 #ifdef CONFIG_DM_ADAPTIVITY
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
     entry = create_proc_read_entry("dm_adaptivity", S_IFREG | S_IRUGO,
                                    dir_dev, proc_get_dm_adaptivity, dev);
-#endif
+
     if (!entry) {
         DBG_871X("Unable to create_proc_read_entry!\n");
         return;
     }
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
+
     entry->write_proc = proc_set_dm_adaptivity;
-#endif
-#endif /* CONFIG_DM_ADAPTIVITY */
+#endif // CONFIG_DM_ADAPTIVITY
+#endif // LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
 }
 
 void rtw_proc_remove_one(struct net_device *dev)
@@ -1064,15 +1038,15 @@ void rtw_proc_remove_one(struct net_device *dev)
 
 #ifdef CONFIG_AP_MODE
         remove_proc_entry("all_sta_info", dir_dev);
-#endif
+#endif // CONFIG_AP_MODE
 
 #ifdef DBG_MEMORY_LEAK
         remove_proc_entry("_malloc_cnt", dir_dev);
-#endif
+#endif // DBG_MEMORY_LEAK
 
 #ifdef CONFIG_FIND_BEST_CHANNEL
         remove_proc_entry("best_channel", dir_dev);
-#endif
+#endif // CONFIG_FIND_BEST_CHANNEL
         remove_proc_entry("rx_signal", dir_dev);
         remove_proc_entry("cbw40_enable", dir_dev);
         remove_proc_entry("ht_enable", dir_dev);
@@ -1085,11 +1059,11 @@ void rtw_proc_remove_one(struct net_device *dev)
 
 #ifdef DBG_CONFIG_ERROR_DETECT
         remove_proc_entry("sreset", dir_dev);
-#endif /* DBG_CONFIG_ERROR_DETECT */
+#endif // DBG_CONFIG_ERROR_DETECT
 
 #ifdef CONFIG_DM_ADAPTIVITY
         remove_proc_entry("dm_adaptivity", dir_dev);
-#endif
+#endif // CONFIG_DM_ADAPTIVITY
         remove_proc_entry(dev->name, rtw_proc);
         dir_dev = NULL;
     }
@@ -1108,7 +1082,7 @@ void rtw_proc_remove_one(struct net_device *dev)
 
 #ifdef DBG_MEM_ALLOC
             remove_proc_entry("mstat", rtw_proc);
-#endif /* DBG_MEM_ALLOC */
+#endif // DBG_MEM_ALLOC
 
 #if(LINUX_VERSION_CODE < KERNEL_VERSION(2,6,24))
             remove_proc_entry(rtw_proc_name, proc_net);
@@ -1119,7 +1093,7 @@ void rtw_proc_remove_one(struct net_device *dev)
         }
     }
 }
-#endif
+#endif // CONFIG_PROC_DEBUG
 
 uint loadparam( _adapter *padapter, _nic_hdl pnetdev);
 uint loadparam( _adapter *padapter, _nic_hdl pnetdev)
@@ -1175,7 +1149,7 @@ uint loadparam( _adapter *padapter, _nic_hdl pnetdev)
     registry_par->ampdu_enable = (u8)rtw_ampdu_enable;
     registry_par->rx_stbc = (u8)rtw_rx_stbc;
     registry_par->ampdu_amsdu = (u8)rtw_ampdu_amsdu;
-#endif
+#endif // CONFIG_80211N_HT
 
     registry_par->lowrate_two_xmit = (u8)rtw_lowrate_two_xmit;
     registry_par->rf_config = (u8)rtw_rf_config;
@@ -1188,43 +1162,43 @@ uint loadparam( _adapter *padapter, _nic_hdl pnetdev)
     registry_par->bt_iso = (u8)rtw_bt_iso;
     registry_par->bt_sco = (u8)rtw_bt_sco;
     registry_par->bt_ampdu = (u8)rtw_bt_ampdu;
-#endif
+#endif // CONFIG_BT_COEXIST
 
     registry_par->bAcceptAddbaReq = (u8)rtw_AcceptAddbaReq;
     registry_par->antdiv_cfg = (u8)rtw_antdiv_cfg;
 
 #ifdef CONFIG_AUTOSUSPEND
     registry_par->usbss_enable = (u8)rtw_enusbss; // 0:disable, 1:enable
-#endif
+#endif // CONFIG_AUTOSUSPEND
 
 #ifdef SUPPORT_HW_RFOFF_DETECTED
     registry_par->hwpdn_mode = (u8)rtw_hwpdn_mode; // 0:disable, 1:enable, 2:by EFUSE config
     registry_par->hwpwrp_detect = (u8)rtw_hwpwrp_detect; // 0:disable, 1:enable
-#endif
+#endif // SUPPORT_HW_RFOFF_DETECTED
 
     registry_par->hw_wps_pbc = (u8)rtw_hw_wps_pbc;
 
 #ifdef CONFIG_ADAPTOR_INFO_CACHING_FILE
     snprintf(registry_par->adaptor_info_caching_file_path, PATH_LENGTH_MAX, "%s", rtw_adaptor_info_caching_file_path);
     registry_par->adaptor_info_caching_file_path[PATH_LENGTH_MAX - 1] = 0;
-#endif
+#endif // CONFIG_ADAPTOR_INFO_CACHING_FILE
 
 #ifdef CONFIG_LAYER2_ROAMING
     registry_par->max_roaming_times = (u8)rtw_max_roaming_times;
 #ifdef CONFIG_INTEL_WIDI
     registry_par->max_roaming_times = (u8)rtw_max_roaming_times + 2;
 #endif // CONFIG_INTEL_WIDI
-#endif
+#endif // CONFIG_LAYER2_ROAMING
 
 #ifdef CONFIG_IOL
     registry_par->force_iol = rtw_force_iol;
-#endif
+#endif // CONFIG_IOL
 
     registry_par->mac_phy_mode = rtw_mac_phy_mode;
 
 #ifdef CONFIG_80211D
     registry_par->enable80211d = (u8)rtw_80211d;
-#endif
+#endif // CONFIG_80211D
 
     snprintf(registry_par->ifname, 16, "%s", ifname);
     snprintf(registry_par->if2name, 16, "%s", if2name);
@@ -1232,7 +1206,7 @@ uint loadparam( _adapter *padapter, _nic_hdl pnetdev)
 
 #ifdef CONFIG_MULTI_VIR_IFACES
     registry_par->ext_iface_num = (u8)rtw_ext_iface_num;
-#endif //CONFIG_MULTI_VIR_IFACES
+#endif // CONFIG_MULTI_VIR_IFACES
 
     _func_exit_;
 
@@ -1350,8 +1324,7 @@ u16 rtw_recv_select_queue(struct sk_buff *skb)
     return rtw_1d_to_queue[priority];
 
 }
-
-#endif
+#endif // LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,35)
 
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,29))
 static const struct net_device_ops rtw_netdev_ops = {
@@ -1399,14 +1372,14 @@ int rtw_init_netdev_name(struct net_device *pnetdev, const char *ifname)
 
             dev_put(TargetNetdev);
             unregister_netdev(TargetNetdev);
-
+#ifdef CONFIG_PROC_DEBUG
             if (TargetAdapter->chip_type == padapter->chip_type)
                 rtw_proc_remove_one(TargetNetdev);
-
+#endif
             padapter->DriverState = DRIVER_REPLACE_DONGLE;
         }
     }
-#endif //CONFIG_EASY_REPLACEMENT
+#endif // CONFIG_EASY_REPLACEMENT
 
     if (dev_alloc_name(pnetdev, ifname) < 0)
     {
@@ -1553,7 +1526,7 @@ void rtw_stop_drv_threads (_adapter *padapter)
 
 #ifdef CONFIG_CONCURRENT_MODE
     if (padapter->isprimary == _TRUE)
-#endif //CONFIG_CONCURRENT_MODE
+#endif // CONFIG_CONCURRENT_MODE
     {
         rtw_stop_cmd_thread(padapter);
     }
@@ -2173,13 +2146,13 @@ _adapter *rtw_drv_add_vir_if(_adapter *primary_padapter, void(*set_intf_ops)(str
 #ifdef CONFIG_RTL8192C
 #ifdef CONFIG_PCI_HCI
     rtl8192ce_set_hal_ops(padapter);
-#elif defined CONFIG_USB_HCI
+#elif CONFIG_USB_HCI
     rtl8192cu_set_hal_ops(padapter);
 #endif
-#elif defined CONFIG_RTL8192D
+#elif CONFIG_RTL8192D
 #ifdef CONFIG_PCI_HCI
     rtl8192de_set_hal_ops(padapter);
-#elif defined CONFIG_USB_HCI
+#elif CONFIG_USB_HCI
     rtl8192du_set_hal_ops(padapter);
 #endif
 #endif
@@ -2537,13 +2510,13 @@ _adapter *rtw_drv_if2_init(_adapter *primary_padapter, void (*set_intf_ops)(stru
 #ifdef CONFIG_RTL8192C
 #ifdef CONFIG_PCI_HCI
     rtl8192ce_set_hal_ops(padapter);
-#elif defined CONFIG_USB_HCI
+#elif CONFIG_USB_HCI
     rtl8192cu_set_hal_ops(padapter);
 #endif
-#elif defined CONFIG_RTL8192D
+#elif CONFIG_RTL8192D
 #ifdef CONFIG_PCI_HCI
     rtl8192de_set_hal_ops(padapter);
-#elif defined CONFIG_USB_HCI
+#elif CONFIG_USB_HCI
     rtl8192du_set_hal_ops(padapter);
 #endif
 #endif
@@ -2835,8 +2808,10 @@ int _netdev_open(struct net_device *pnetdev)
             padapter->intf_start(padapter);
         }
 
+#ifdef CONFIG_PROC_DEBUG
 #ifndef RTK_DMP_PLATFORM
         rtw_proc_init_one(pnetdev);
+#endif
 #endif
 
 #ifdef CONFIG_IOCTL_CFG80211
