@@ -255,7 +255,7 @@
 // #define CONFIG_DEBUG_RTL819X
 
 // Procfs
-#define CONFIG_PROC_DEBUG 0
+// #define CONFIG_PROC_DEBUG
 
 // #define DBG_IO
 // #define DBG_DELAY_OS
@@ -273,7 +273,7 @@
 // #define DBG_ROAMING_TEST
 // #define DBG_HAL_INIT_PROFILING
 // #define DBG_MEMORY_LEAK 1
-#define DBG_CONFIG_ERROR_DETECT
+// #define DBG_CONFIG_ERROR_DETECT
 // #define DBG_CONFIG_ERROR_RESET
 // TX use 1 urb
 // #define CONFIG_SINGLE_XMIT_BUF
