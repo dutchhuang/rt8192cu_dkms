@@ -607,7 +607,6 @@ install_dkms:
 	dkms add -m $(MODULE_NAME) -v 4.0.2.9000.20130911
 	dkms build -m $(MODULE_NAME) -v 4.0.2.9000.20130911
 	dkms install -m $(MODULE_NAME) -v 4.0.2.9000.20130911
-	touch /etc/modprobe.d/blacklist-rtl-wlan-driver.conf
 	tee "/etc/modprobe.d/blacklist-native-rtl-wlan-driver.conf" << 'EOF'
 install rtl8192cu /bin/false
 install rtl8192c_common /bin/false
@@ -620,7 +619,7 @@ EOF
 uninstall_dkms:
 	dkms remove -m $(MODULE_NAME) -v 4.0.2.9000.20130911 --all
 	rm -frd /usr/src/$(MODULE_NAME)-4.0.2.9000.20130911
-	rm -f /etc/modprobe.d/blacklist-native-rtl-wlan-driver.conf
+	rm -f "/etc/modprobe.d/blacklist-native-rtl-wlan-driver.conf"
 	rmmod $(MODULE_NAME)
 	modprobe rtl8192cu
 
