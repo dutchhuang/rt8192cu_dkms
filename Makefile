@@ -616,7 +616,7 @@ uninstall_dkms:
 	rm -f /etc/modprobe.d/blacklist-native-rtl-wlan-drivers.conf
 	rmmod -f $(MODULE_NAME)
 	modprobe -q rtl8192cu
-q
+
 config_r:
 	@echo "make config"
 	/bin/bash script/Configure script/config.in
