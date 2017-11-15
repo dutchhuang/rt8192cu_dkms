@@ -775,7 +775,11 @@ __inline static void _set_workitem(_workitem *pwork)
 	#include <linux/semaphore.h>
 #endif
 	#include <linux/sem.h>
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(4,11,0))
 	#include <linux/sched.h>
+#else
+	#include <linux/sched/signal.h>
+#endif
 	#include <linux/etherdevice.h>
 	#include <linux/wireless.h>
 	#include <net/iw_handler.h>
@@ -786,10 +790,6 @@ __inline static void _set_workitem(_workitem *pwork)
 	#include <linux/interrupt.h>	// for struct tasklet_struct
 	#include <linux/ip.h>
 	#include <linux/kthread.h>
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4,11,0))
-	#include <linux/signal.h>
-	#include <linux/sched/signal.h>
-#endif
 
 #ifdef CONFIG_IOCTL_CFG80211	
 //	#include <linux/ieee80211.h>        
