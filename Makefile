@@ -598,30 +598,24 @@ uninstall:
 	rm -f $(MODDESTDIR)/$(MODULE_NAME).ko
 	/sbin/depmod -a ${KVER}
 
-install_dkms:
+install_dkms: clean 
+	rm -rf /usr/src/$(MODULE_NAME)-4.0.29
 	mkdir -p /usr/src/$(MODULE_NAME)-4.0.2.9
 	cp -a . /usr/src/$(MODULE_NAME)-4.0.2.9
 	rm -f /usr/src/$(MODULE_NAME)-4.0.2.9/README.md
-	rm -fr /usr/src/$(MODULE_NAME)-4.0.2.9/.git
+	rm -rf /usr/src/$(MODULE_NAME)-4.0.2.9/.git
 	dkms add -m $(MODULE_NAME) -v 4.0.2.9
 	dkms build -m $(MODULE_NAME) -v 4.0.2.9
-	dkms install -m $(MODULE_NAME) -v 4.0.2.9
+	dkms install -m $(MODULE_NAME) -v 4.0.2.9 --force
+	echo "blacklist rtl8192cu" > /etc/modprobe.d/blacklist-native-rtl-wlan-drivers.conf
 	echo "blacklist rtl8192c_common" >> /etc/modprobe.d/blacklist-native-rtl-wlan-drivers.conf
 	echo "blacklist rtlwifi" >> /etc/modprobe.d/blacklist-native-rtl-wlan-drivers.conf
-	echo "blacklist rtl8192cu" >> /etc/modprobe.d/blacklist-native-rtl-wlan-drivers.conf
 	echo "blacklist rtl8xxxu" >> /etc/modprobe.d/blacklist-native-rtl-wlan-drivers.conf
-	modprobe -q -r rtl8192c_common
-	modprobe -q -r rtl8192cu
-	modprobe -q -r rtl8xxxu
-	modprobe -q -r rtlwifi
-	modprobe -q $(MODULE_NAME)
 
 uninstall_dkms:
 	dkms remove -m $(MODULE_NAME) -v 4.0.2.9 --all
-	rm -frd /usr/src/$(MODULE_NAME)-4.0.2.9
+	rm -rfd /usr/src/$(MODULE_NAME)-4.0.2.9
 	rm -f /etc/modprobe.d/blacklist-native-rtl-wlan-drivers.conf
-	modprobe -q -r $(MODULE_NAME)
-	modprobe -q rtl8192cu
 
 config_r:
 	@echo "make config"
