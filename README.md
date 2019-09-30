@@ -1,4 +1,30 @@
-# 8192cu dkms
+# 8192cu dkms driver source code for Ubuntu 16.04 LTS (Tested with Kernel 4.15.0-60)
+
+I have a RTL8188CUS USB wifi card, and I want it to be used in my Ubuntu 16.04 machine. But the OS ported rtl8192 dirver really sucks, and the connection drops very frequently. I have searched for very long for a workable driver, but got no luck (the most case is that the driver is only compiling for Kernel 2.* or 3.*), then I decided to work out one version myself, and here it is. Hope it helps you as well if you had the same problem like me had.
+
+A simple guide on how to install it:
+
+1. First you need some basic packages installed (if you don't have ethernet, use your iphone as hotspot and share via cables):
+  sudo apt-get install --reinstall linux-headers-$(uname -r) linux-headers-generic build-essential dkms git
+
+2. Download the source code:
+  sudo git clone (this repo url) /usr/src/8192cu-4.0.2.9000.20130911
+ 
+3. Build and install via DKMS:
+  sudo dkms add -m 8192cu -v 4.0.2.9000.20130911
+  sudo dkms build -m 8192cu -v 4.0.2.9000.20130911
+  sudo dkms install -m 8192cu -v 4.0.2.9000.20130911
+
+4. Blacklist the OS ported driver:
+  sudo echo -e "blacklist rtl8192cu\nblacklist rtl8xxxu" | sudo tee -a /etc/modprobe.d/blacklist.conf 
+
+In the last reboot, and then check if it is the 8192cu loaded when your usb card inserted, if yes then congrat, you should have the driver working, and normally it should be much better the OS ported one.
+
+
+I don't have very sophisticated knowledge and experience on this driver, so if you have any further question I may not be able to answer you as well. If you find any issue and you are able to solve it, please feel free to do so..
+
+
+/////////////////////////////////////Readme from previouse repo see below//////////////////////////////////////////
 
 ## About:
 Allows easy installation of patched rt8192cu driver via dkms.
