@@ -2,7 +2,7 @@
 
 I have a RTL8188CUS USB wifi card (this driver may work with some other RTL USB wifi card as well, but I don't have device to test), and I want it to be used in my Ubuntu 16.04 machine. But the OS ported rtl8192 dirver really sucks, and the connection drops very frequently. I have searched for very long for a workable driver, but got no luck (the most case is that the driver is only compiling for Kernel 2.* or 3.*), then I decided to work out one version myself, and here it is. Hope it helps you as well if you had the same problem like me had.
 
-**Please use with your own cautious!!!**
+**Please use at your discretion!!!**
 
 A simple guide on how to install it:
 
